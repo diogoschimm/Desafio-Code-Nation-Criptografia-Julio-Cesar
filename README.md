@@ -89,7 +89,7 @@ https://www.codenation.dev/
 
 ```
 
-# Código para computador o HASH SHA1
+# Código para computar o HASH SHA1
 
 ```c#
 	SHA1Managed sha1 = new SHA1Managed();
