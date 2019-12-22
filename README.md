@@ -49,3 +49,50 @@ Fonte do desafio:
 Acelera DEV - Code Nation  
 https://www.codenation.dev/
 
+
+# Código para decifrar
+
+```c#
+
+	static string Decrifrar(string cifrado, int numCasas)
+        {
+            var decifrado = "";
+            for (int i = 0; i < cifrado.Length; i++)
+            {
+                char letra = cifrado.Substring(i, 1).ToCharArray()[0];
+                int codigoASCII = (int)letra;
+                int codigoFinal = codigoASCII - numCasas;
+
+                if (codigoASCII >= 65 && codigoASCII <= 90)
+                {
+                    if (codigoFinal < 65)
+                    {
+                        codigoFinal = 90 - (65 - codigoFinal);
+                    }
+                    decifrado += Convert.ToChar(codigoFinal);
+                }
+                else if (codigoASCII >= 97 && codigoASCII <= 122)
+                {
+                    if (codigoFinal < 97)
+                    {
+                        codigoFinal = 123 - (97 - codigoFinal);
+                    }
+                    decifrado += Convert.ToChar(codigoFinal);
+                }
+                else
+                {
+                    decifrado += letra;
+                }
+            }
+            return decifrado;
+        }
+
+```
+
+# Código para computador o HASH SHA1
+
+```c#
+	SHA1Managed sha1 = new SHA1Managed();
+	byte[] bytesHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(decifrado));
+	string hash = BitConverter.ToString(bytesHash).Replace("-", "").ToLower();
+```
